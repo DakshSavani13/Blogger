@@ -2,6 +2,14 @@
 
 A full-stack blogging platform built with MongoDB, Express.js, Node.js, HTML, CSS, and JavaScript. Features include user authentication, blog post management, categories, comments system, search functionality, and beautiful image support.
 
+## Preview
+
+<img width="1853" height="699" alt="Screenshot 2025-09-27 145623" src="https://github.com/user-attachments/assets/2af67a18-0b41-4e81-ada7-588ebab23528" />
+<img width="1840" height="1000" alt="Screenshot 2025-09-27 145614" src="https://github.com/user-attachments/assets/da5c37d7-4006-4498-b185-361a0aed546b" />
+<img width="1820" height="1006" alt="Screenshot 2025-09-27 145601" src="https://github.com/user-attachments/assets/5f8bacc1-4744-41bc-857b-d5b7d72d8b10" />
+<img width="1892" height="1006" alt="Screenshot 2025-09-27 145525" src="https://github.com/user-attachments/assets/bc4029b6-5a4f-460d-a446-f69bc83dc8bf" />
+<img width="1911" height="1017" alt="Screenshot 2025-09-27 145457" src="https://github.com/user-attachments/assets/e76e8f80-cc91-479e-9b18-09bf4aa14892" />
+
 ## 🌟 Features
 
 ### For Users
