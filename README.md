@@ -294,10 +294,6 @@ The frontend uses vanilla HTML/CSS/JS with modern features:
 - Test all features before submitting
 - Update documentation for new features
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🆘 Support
 
 For support, questions, or feature requests:
@@ -312,6 +308,9 @@ For support, questions, or feature requests:
 - **Google Fonts** for the Inter font family
 - **MongoDB, Express.js, Node.js** for the robust backend stack
 
+## Developers
+Daksh Savani-savanidaksh7@gmail.com
+Om Rakholiya
 ---
 
 **Built with ❤️ using the MERN stack and modern web technologies**
