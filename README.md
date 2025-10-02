@@ -317,8 +317,7 @@ For support, questions, or feature requests:
 - **MongoDB, Express.js, Node.js** for the robust backend stack
 
 ## Developers
-Daksh Savani-savanidaksh7@gmail.com
-Om Rakholiya
----
+- **Daksh Savani** - savanidaksh7@gmail.com
+- **Om Rakholiya** - 23dcs104@gmail.com
 
-**Built with ❤️ using the MERN stack and modern web technologies**
+
