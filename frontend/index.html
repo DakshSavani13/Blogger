@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogger - Modern Blogging Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-blog"></i> Blogger</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link" onclick="showHome()">Home</a>
+                <a href="#" class="nav-link" onclick="showCategories()">Categories</a>
+                <div class="nav-auth">
+                    <div id="auth-buttons" class="auth-buttons">
+                        <button class="btn btn-outline" onclick="showLogin()">Login</button>
+                        <button class="btn btn-primary" onclick="showRegister()">Register</button>
+                    </div>
+                    <div id="user-menu" class="user-menu" style="display: none;">
+                        <span id="username-display"></span>
+                        <div class="dropdown">
+                            <button class="dropdown-btn"><i class="fas fa-user-circle"></i></button>
+                            <div class="dropdown-content">
+                                <div id="admin-menu" style="display: none;">
+                                    <a href="#" onclick="showAdminDashboard()">Dashboard</a>
+                                    <a href="#" onclick="showCreatePost()">Create Post</a>
+                                    <a href="#" onclick="showManageCategories()">Categories</a>
+                                </div>
+                                <a href="#" onclick="logout()">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home-section" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h1>Welcome to Blogger</h1>
+                    <p>Discover amazing stories, insights, and ideas from our community</p>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="search-filter">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Search posts...">
+                        <button onclick="searchPosts()"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="filter-box">
+                        <select id="category-filter" onchange="filterByCategory()">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Posts Grid -->
+                <div id="posts-container" class="posts-grid">
+                    <!-- Posts will be loaded here -->
+                </div>
+
+                <!-- Pagination -->
+                <div id="pagination" class="pagination">
+                    <!-- Pagination will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Post Detail Section -->
+        <section id="post-detail-section" class="section">
+            <div class="container">
+                <div id="post-detail" class="post-detail">
+                    <!-- Post detail will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories-section" class="section">
+            <div class="container">
+                <h2>Categories</h2>
+                <div id="categories-container" class="categories-grid">
+                    <!-- Categories will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Auth Modals -->
+        <div id="auth-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                
+                <!-- Login Form -->
+                <div id="login-form" class="auth-form">
+                    <h2>Login</h2>
+                    <form onsubmit="login(event)">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    <p>Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
+                </div>
+
+                <!-- Register Form -->
+                <div id="register-form" class="auth-form" style="display: none;">
+                    <h2>Register</h2>
+                    <form onsubmit="register(event)">
+                        <div class="form-group">
+                            <label for="register-username">Username</label>
+                            <input type="text" id="register-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-role">Role</label>
+                            <select id="register-role">
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <section id="admin-section" class="section">
+            <div class="container">
+                <div class="admin-dashboard">
+                    <h2>Admin Dashboard</h2>
+                    <div class="admin-tabs">
+                        <button class="tab-btn active" onclick="showAdminTab('posts')">Manage Posts</button>
+                        <button class="tab-btn" onclick="showAdminTab('categories')">Manage Categories</button>
+                        <button class="tab-btn" onclick="showAdminTab('comments')">Manage Comments</button>
+                    </div>
+
+                    <!-- Posts Management -->
+                    <div id="admin-posts" class="admin-tab-content active">
+                        <div class="admin-header">
+                            <h3>Posts</h3>
+                            <button class="btn btn-primary" onclick="showCreatePost()">Create New Post</button>
+                        </div>
+                        <div id="admin-posts-list" class="admin-list">
+                            <!-- Admin posts will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Categories Management -->
+                    <div id="admin-categories" class="admin-tab-content">
+                        <div class="admin-header">
+                            <h3>Categories</h3>
+                            <button class="btn btn-primary" onclick="showCreateCategory()">Create Category</button>
+                        </div>
+                        <div id="admin-categories-list" class="admin-list">
+                            <!-- Admin categories will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Comments Management -->
+                    <div id="admin-comments" class="admin-tab-content">
+                        <div class="admin-header">
+                            <h3>Comments</h3>
+                        </div>
+                        <div id="admin-comments-list" class="admin-list">
+                            <!-- Admin comments will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Create/Edit Post Form -->
+        <section id="post-form-section" class="section">
+            <div class="container">
+                <div class="post-form">
+                    <h2 id="post-form-title">Create New Post</h2>
+                    <form id="post-form" onsubmit="savePost(event)">
+                        <input type="hidden" id="post-id">
+                        <div class="form-group">
+                            <label for="post-title">Title</label>
+                            <input type="text" id="post-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-category">Category</label>
+                            <select id="post-category" required>
+                                <option value="">Select Category</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-excerpt">Excerpt</label>
+                            <textarea id="post-excerpt" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-content">Content</label>
+                            <textarea id="post-content" rows="10" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="post-tags">Tags (comma separated)</label>
+                            <input type="text" id="post-tags">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-featured-image">Featured Image URL</label>
+                            <input type="url" id="post-featured-image" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-status">Status</label>
+                            <select id="post-status">
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="showAdminDashboard()">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/comments.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
